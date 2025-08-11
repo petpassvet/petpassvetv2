@@ -13,6 +13,8 @@
     input, textarea, select { width: 100%; padding: 12px; margin-bottom: 18px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
     button { width: 100%; background-color: #007bff; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; }
     .status-message { text-align: center; font-weight: bold; margin-top: 20px; padding: 10px; border-radius: 5px; }
+    .status-success { background-color: #d4edda; color: #155724; }
+    .status-error { background-color: #f8d7da; color: #721c24; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
@@ -33,90 +35,63 @@
     
     <label for="nome_pet">Nome:</label>
     <input type="text" name="nome_pet" required />
-    
-    <label for="especie_pet">Espécie:</label>
-    <input type="text" name="especie_pet" required />
-    
-    <label for="raca_pet">Raça:</label>
-    <input type="text" name="raca_pet" />
-    
-    <label for="sexo_pet">Sexo:</label>
-    <select name="sexo_pet"><option value="Macho">Macho</option><option value="Fêmea">Fêmea</option></select>
-    
-    <label for="cor_pet">Cor:</label>
-    <input type="text" name="cor_pet" />
-
-    <label for="idade_pet">Idade:</label>
-    <input type="text" name="idade_pet" />
-
-    <label for="peso_pet">Peso (kg):</label>
-    <input type="text" name="peso_pet" />
-    
-    <label for="alergias_intolerancias">Alergias ou Intolerâncias:</label>
-    <textarea name="alergias_intolerancias"></textarea>
-
-    <label for="observacoes_gerais">Observações Gerais:</label>
-    <textarea name="observacoes_gerais"></textarea>
+    <!-- ... Resto de los campos del formulario (sin cambios) ... -->
+    <label for="especie_pet">Espécie:</label><input type="text" name="especie_pet" required />
+    <label for="raca_pet">Raça:</label><input type="text" name="raca_pet" />
+    <label for="sexo_pet">Sexo:</label><select name="sexo_pet"><option value="Macho">Macho</option><option value="Fêmea">Fêmea</option></select>
+    <label for="cor_pet">Cor:</label><input type="text" name="cor_pet" />
+    <label for="idade_pet">Idade:</label><input type="text" name="idade_pet" />
+    <label for="peso_pet">Peso (kg):</label><input type="text" name="peso_pet" />
+    <label for="alergias_intolerancias">Alergias ou Intolerâncias:</label><textarea name="alergias_intolerancias"></textarea>
+    <label for="observacoes_gerais">Observações Gerais:</label><textarea name="observacoes_gerais"></textarea>
 
     <h2>👤 Dados do Tutor</h2>
-    <label for="nome_tutor">Nome:</label>
-    <input type="text" name="nome_tutor" required />
-    
-    <label for="telefone_tutor">Telefone:</label>
-    <input type="tel" name="telefone_tutor" required />
-    
-    <label for="email_tutor">Email:</label>
-    <input type="email" name="email_tutor" />
-
-    <label for="localizacao_tutor">Localização:</label>
-    <input type="text" name="localizacao_tutor" />
+    <label for="nome_tutor">Nome:</label><input type="text" name="nome_tutor" required />
+    <label for="telefone_tutor">Telefone:</label><input type="tel" name="telefone_tutor" required />
+    <label for="email_tutor">Email:</label><input type="email" name="email_tutor" />
+    <label for="localizacao_tutor">Localização:</label><input type="text" name="localizacao_tutor" />
 
     <h2>🏥 Clínica e Veterinário</h2>
-    <label for="nome_veterinario">Nome do Veterinário:</label>
-    <input type="text" name="nome_veterinario" />
-
-    <label for="nome_clinica">Nome da Clínica:</label>
-    <input type="text" name="nome_clinica" />
-
-    <label for="email_clinica">Email da Clínica:</label>
-    <input type="email" name="email_clinica" />
+    <label for="nome_veterinario">Nome do Veterinário:</label><input type="text" name="nome_veterinario" />
+    <label for="nome_clinica">Nome da Clínica:</label><input type="text" name="nome_clinica" />
+    <label for="email_clinica">Email da Clínica:</label><input type="email" name="email_clinica" />
     
     <h2>🩺 Histórico Inicial</h2>
-    <label for="data_ultima_visita">Data do Atendimento:</label>
-    <input type="date" name="data_ultima_visita" />
-    
-    <label for="tipo_atendimento">Tipo de Atendimento:</label>
-    <input type="text" name="tipo_atendimento" />
-
-    <label for="procedimentos_realizados">Procedimentos Realizados:</label>
-    <textarea name="procedimentos_realizados"></textarea>
-    
-    <label for="vacinas_aplicadas">Vacinas Aplicadas:</label>
-    <textarea name="vacinas_aplicadas"></textarea>
+    <label for="data_ultima_visita">Data do Atendimento:</label><input type="date" name="data_ultima_visita" />
+    <label for="tipo_atendimento">Tipo de Atendimento:</label><input type="text" name="tipo_atendimento" />
+    <label for="procedimentos_realizados">Procedimentos Realizados:</label><textarea name="procedimentos_realizados"></textarea>
+    <label for="vacinas_aplicadas">Vacinas Aplicadas:</label><textarea name="vacinas_aplicadas"></textarea>
 
     <h2>🗓️ Próxima Visita</h2>
-    <label for="data_proxima_visita">Data da Próxima Visita:</label>
-    <input type="date" name="data_proxima_visita" />
+    <label for="data_proxima_visita">Data da Próxima Visita:</label><input type="date" name="data_proxima_visita" />
+    <label for="obs_proxima_visita">Observações da Próxima Visita:</label><textarea name="obs_proxima_visita"></textarea>
     
-    <label for="obs_proxima_visita">Observações da Próxima Visita:</label>
-    <textarea name="obs_proxima_visita"></textarea>
-
     <button type="submit" id="submitButton">Ativar Plaquinha</button>
     <div id="statusMessage" class="status-message"></div>
   </form>
 
   <script>
     const form = document.getElementById('petpassVetForm');
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouuyWPbqt-grNkVfd921HldC20mzNxIt8Tb3OgO77Hwg1DIm9nQWaa7-Z2NCvco7QcQ/exec"; 
+    const statusMessage = document.getElementById('statusMessage');
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouuyWPbqt-grNkVfd921HldC20mzNxIt8Tb3OgO77Hwg1DIm9nQWaa7-Z2NCvco7QcQ/exec"; // Asegúrate que esta URL es la correcta
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      document.getElementById('submitButton').disabled = true;
-      document.getElementById('statusMessage').textContent = 'Enviando...';
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = true;
+      statusMessage.className = 'status-message';
+      statusMessage.textContent = 'Enviando dados, por favor aguarde...';
       
       const file = document.getElementById('foto_pet_input').files[0];
-      const reader = new FileReader();
+      if (!file) {
+        statusMessage.textContent = 'Erro: Por favor, selecione uma foto.';
+        statusMessage.className = 'status-message status-error';
+        submitButton.disabled = false;
+        return;
+      }
       
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
       reader.onload = event => {
         document.getElementById('foto_pet_base64').value = event.target.result;
         
@@ -124,32 +99,46 @@
         const payload = Object.fromEntries(formData.entries());
         payload.action = "registerVet";
 
+        // ========= INICIO DE LA CORRECCIÓN CRÍTICA =========
         fetch(SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',
-          body: JSON.stringify(payload)
+          // mode: 'no-cors', // <-- ESTA LÍNEA ES ELIMINADA. ES LA CAUSA DEL ERROR.
+          cache: 'no-cache',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+        .then(res => res.json()) // Ahora procesamos la respuesta del servidor
+        .then(data => {
+          if (data.result === 'success') {
+            statusMessage.textContent = `Plaquinha ${data.id} ativada com sucesso!`;
+            statusMessage.className = 'status-message status-success';
+            form.reset();
+          } else {
+            // Mostramos el error que viene del backend
+            throw new Error(data.message || 'Ocorreu um erro desconhecido.');
+          }
+        })
+        .catch(error => {
+          statusMessage.textContent = `Erro: ${error.message}`;
+          statusMessage.className = 'status-message status-error';
         })
         .finally(() => {
-          document.getElementById('statusMessage').textContent = 'Registro concluído!';
-          form.reset();
+          // Reactivamos el botón después de 4 segundos
           setTimeout(() => {
-            document.getElementById('submitButton').disabled = false;
-            document.getElementById('statusMessage').textContent = '';
+            submitButton.disabled = false;
           }, 4000);
         });
+        // ========= FIN DE LA CORRECCIÓN CRÍTICA =========
       };
-      
-      if (file) {
-        reader.readAsDataURL(file);
-      } else {
-        // Manejar el caso sin foto si se decide permitirlo
-        document.getElementById('statusMessage').textContent = 'Selecione uma foto.';
-        document.getElementById('submitButton').disabled = false;
-      }
+      reader.onerror = () => {
+          statusMessage.textContent = 'Erro ao processar a imagem.';
+          statusMessage.className = 'status-message status-error';
+          submitButton.disabled = false;
+      };
     });
   </script>
 </body>
 </html>
-
-
 
