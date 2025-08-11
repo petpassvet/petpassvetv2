@@ -3,167 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registrar Pet - Pet Pass Vet</title>
+  <title>Ativar Pet Pass Vet</title>
   <style>
     body { font-family: 'Poppins', sans-serif; padding: 20px; background: #f2f4f8; margin: 0; }
-    header { text-align: center; margin-bottom: 20px; }
-    header img { max-width: 160px; margin-top: 10px; }
     form { background: #fff; padding: 25px; border-radius: 10px; max-width: 700px; margin: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     h1, h2 { text-align: center; color: #333; }
     h2 { font-size: 1.2em; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 25px; margin-bottom: 20px; }
     label { font-weight: bold; display: block; margin-bottom: 5px; color: #555; }
-    input, textarea, select { width: 100%; padding: 12px; margin-bottom: 18px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    input, textarea, select { width: 100%; padding: 12px; margin-bottom: 18px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
     button { width: 100%; background-color: #007bff; color: white; border: none; padding: 15px; border-radius: 5px; cursor: pointer; font-size: 18px; font-weight: bold; }
-    button:hover { background-color: #0056b3; }
-    button:disabled { background-color: #ccc; cursor: not-allowed; }
     .status-message { text-align: center; font-weight: bold; margin-top: 20px; padding: 10px; border-radius: 5px; }
-    .status-success { background-color: #d4edda; color: #155724; }
-    .status-error { background-color: #f8d7da; color: #721c24; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-  <!-- Cambia esto por la URL de tu logo para Pet Pass Vet -->
-  <img src="https://raw.githubusercontent.com/petpassvet/petpassvetv2/main/logo_petpass_vet.png" alt="Pet Pass Vet Logo" />
-</header>
+  <header style="text-align:center; margin-bottom:20px;">
+    <img src="https://raw.githubusercontent.com/petpassvet/petpassvetv2/main/logo_petpass_vet.png" alt="Pet Pass Vet Logo" style="max-width:160px;" />
+  </header>
   
   <form id="petpassVetForm">
-    <h1>Registro Pet Pass Vet</h1>
-
-<!-- ESTE BLOQUE ES NUEVO Y CRÍTICO -->
-<label for="id_pet">Número de Série (ex: PPV-12345):</label>
-<input type="text" id="id_pet" name="id_pet" required pattern="PPV-\d{5}" title="O formato deve ser PPV- seguido por 5 números (ex: PPV-12345)"/>
-
-    <h2>🐾 Dados do Pet</h2>
-    <label for="foto_pet">📸 Foto do Pet (Recomendado: imagem quadrada)</label>
-    <input type="file" id="foto_pet" name="foto_pet" accept="image/*" required />
+    <h1>Ativação de Plaquinha Pet Pass Vet</h1>
+    <label for="id_pet">Número de Série (ex: PPV-12345):</label>
+    <input type="text" id="id_pet" name="id_pet" required pattern="PPV-\d{5}" title="O formato deve ser PPV- seguido por 5 números."/>
     
-    <label for="nome_pet">Nome do Pet:</label>
-    <input type="text" id="nome_pet" name="nome_pet" required />
+    <h2>🐾 Dados do Pet</h2>
+    <label for="url_foto">Foto do Pet:</label>
+    <input type="file" id="foto_pet_input" accept="image/*" required />
+    <input type="hidden" name="foto_pet" id="foto_pet_base64">
+    
+    <label for="nome_pet">Nome:</label>
+    <input type="text" name="nome_pet" required />
     
     <label for="especie_pet">Espécie:</label>
-    <input type="text" id="especie_pet" name="especie_pet" required />
+    <input type="text" name="especie_pet" required />
     
     <label for="raca_pet">Raça:</label>
-    <input type="text" id="raca_pet" name="raca_pet" />
+    <input type="text" name="raca_pet" />
     
     <label for="sexo_pet">Sexo:</label>
-    <select id="sexo_pet" name="sexo_pet">
-      <option value="Macho">Macho</option>
-      <option value="Fêmea">Fêmea</option>
-    </select>
+    <select name="sexo_pet"><option value="Macho">Macho</option><option value="Fêmea">Fêmea</option></select>
     
     <label for="cor_pet">Cor:</label>
-    <input type="text" id="cor_pet" name="cor_pet" />
+    <input type="text" name="cor_pet" />
 
-    <label for="idade_pet">Idade (ex: 5 anos):</label>
-    <input type="text" id="idade_pet" name="idade_pet" />
+    <label for="idade_pet">Idade:</label>
+    <input type="text" name="idade_pet" />
 
-    <label for="peso_pet">Peso (ex: 15.5 kg):</label>
-    <input type="text" id="peso_pet" name="peso_pet" />
+    <label for="peso_pet">Peso (kg):</label>
+    <input type="text" name="peso_pet" />
     
-    <label for="alergias_intolerancias">🚨 Alergias ou Intolerâncias:</label>
-    <textarea id="alergias_intolerancias" name="alergias_intolerancias"></textarea>
+    <label for="alergias_intolerancias">Alergias ou Intolerâncias:</label>
+    <textarea name="alergias_intolerancias"></textarea>
 
     <label for="observacoes_gerais">Observações Gerais:</label>
-    <textarea id="observacoes_gerais" name="observacoes_gerais"></textarea>
+    <textarea name="observacoes_gerais"></textarea>
 
     <h2>👤 Dados do Tutor</h2>
-    <label for="nome_tutor">Nome do Tutor:</label>
-    <input type="text" id="nome_tutor" name="nome_tutor" required />
+    <label for="nome_tutor">Nome:</label>
+    <input type="text" name="nome_tutor" required />
     
-    <label for="telefone_tutor">Telefone (com código, ex: 55119...):</label>
-    <input type="tel" id="telefone_tutor" name="telefone_tutor" required />
+    <label for="telefone_tutor">Telefone:</label>
+    <input type="tel" name="telefone_tutor" required />
     
-    <label for="email_tutor">Email do Tutor:</label>
-    <input type="email" id="email_tutor" name="email_tutor" />
+    <label for="email_tutor">Email:</label>
+    <input type="email" name="email_tutor" />
 
-    <label for="localizacao_tutor">Localização (Cidade/Estado):</label>
-    <input type="text" id="localizacao_tutor" name="localizacao_tutor" />
+    <label for="localizacao_tutor">Localização:</label>
+    <input type="text" name="localizacao_tutor" />
 
     <h2>🏥 Clínica e Veterinário</h2>
-    <label for="nome_veterinario">Nome do Veterinário Responsável:</label>
-    <input type="text" id="nome_veterinario" name="nome_veterinario" />
+    <label for="nome_veterinario">Nome do Veterinário:</label>
+    <input type="text" name="nome_veterinario" />
 
     <label for="nome_clinica">Nome da Clínica:</label>
-    <input type="text" id="nome_clinica" name="nome_clinica" />
+    <input type="text" name="nome_clinica" />
 
     <label for="email_clinica">Email da Clínica:</label>
-    <input type="email" id="email_clinica" name="email_clinica" />
+    <input type="email" name="email_clinica" />
     
-    <h2>💉 Registro Inicial de Vacinas</h2>
-    <label for="vacinas">Vacinas já aplicadas (uma por linha):</label>
-    <textarea id="vacinas" name="vacinas"></textarea>
+    <h2>🩺 Histórico Inicial</h2>
+    <label for="data_ultima_visita">Data do Atendimento:</label>
+    <input type="date" name="data_ultima_visita" />
+    
+    <label for="tipo_atendimento">Tipo de Atendimento:</label>
+    <input type="text" name="tipo_atendimento" />
 
-    <button type="submit" id="submitButton">Registrar Pet</button>
+    <label for="procedimentos_realizados">Procedimentos Realizados:</label>
+    <textarea name="procedimentos_realizados"></textarea>
+    
+    <label for="vacinas_aplicadas">Vacinas Aplicadas:</label>
+    <textarea name="vacinas_aplicadas"></textarea>
+
+    <h2>🗓️ Próxima Visita</h2>
+    <label for="data_proxima_visita">Data da Próxima Visita:</label>
+    <input type="date" name="data_proxima_visita" />
+    
+    <label for="obs_proxima_visita">Observações da Próxima Visita:</label>
+    <textarea name="obs_proxima_visita"></textarea>
+
+    <button type="submit" id="submitButton">Ativar Plaquinha</button>
     <div id="statusMessage" class="status-message"></div>
   </form>
 
   <script>
-    const petpassVetForm = document.getElementById('petpassVetForm');
-    const submitButton = document.getElementById('submitButton');
-    const statusMessage = document.getElementById('statusMessage');
-    
-    // ¡¡¡CRÍTICO!!! Pega aquí la URL de implementación de tu nuevo script de PET PASS VET
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSH-nCYAoNFa9JBF9Gw9VlTRdN10dJHzwLMrJX-_r8vxZvrJiDY3rzZvLpd91y8UAcWQ/exec"; 
+    const form = document.getElementById('petpassVetForm');
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouuyWPbqt-grNkVfd921HldC20mzNxIt8Tb3OgO77Hwg1DIm9nQWaa7-Z2NCvco7QcQ/exec"; 
 
-    petpassVetForm.addEventListener('submit', function(e) {
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      submitButton.disabled = true;
-      statusMessage.textContent = 'Enviando dados, por favor aguarde...';
-      statusMessage.className = 'status-message';
-
-      const fileInput = e.target.querySelector('input[name="foto_pet"]');
-      const file = fileInput.files[0];
-
-      if (!file) {
-        statusMessage.textContent = 'Erro: Por favor, selecione uma foto.';
-        statusMessage.classList.add('status-error');
-        submitButton.disabled = false;
-        return;
-      }
+      document.getElementById('submitButton').disabled = true;
+      document.getElementById('statusMessage').textContent = 'Enviando...';
       
+      const file = document.getElementById('foto_pet_input').files[0];
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const formData = new FormData(petpassVetForm);
+      
+      reader.onload = event => {
+        document.getElementById('foto_pet_base64').value = event.target.result;
+        
+        const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
-        payload.foto_pet = reader.result; // Imagen como Base64
-        payload.action = "registerVet"; // Acción para el router del doPost
+        payload.action = "registerVet";
 
         fetch(SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors', // Importante para la petición inicial, aunque no recibamos respuesta directa
-          cache: 'no-cache',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
           body: JSON.stringify(payload)
         })
         .finally(() => {
-          // El bloque 'finally' se ejecuta siempre, ideal para este caso.
-          statusMessage.textContent = '¡Processamento concluído! Seu pet foi registrado com sucesso.';
-          statusMessage.classList.add('status-success');
-          petpassVetForm.reset();
-          // No redireccionamos, solo mostramos el mensaje y reseteamos el formulario
+          document.getElementById('statusMessage').textContent = 'Registro concluído!';
+          form.reset();
           setTimeout(() => {
-            submitButton.disabled = false;
-            statusMessage.textContent = '';
-            statusMessage.className = 'status-message';
-          }, 5000); // Limpia el mensaje después de 5 segundos
+            document.getElementById('submitButton').disabled = false;
+            document.getElementById('statusMessage').textContent = '';
+          }, 4000);
         });
       };
       
-      reader.onerror = error => {
-        console.error("Erro ao ler o arquivo:", error);
-        statusMessage.textContent = 'Erro ao processar a imagem.';
-        statusMessage.classList.add('status-error');
-        submitButton.disabled = false;
-      };
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        // Manejar el caso sin foto si se decide permitirlo
+        document.getElementById('statusMessage').textContent = 'Selecione uma foto.';
+        document.getElementById('submitButton').disabled = false;
+      }
     });
   </script>
 </body>
 </html>
-
 
 
 
