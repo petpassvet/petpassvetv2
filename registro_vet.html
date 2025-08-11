@@ -35,7 +35,6 @@
     
     <label for="nome_pet">Nome:</label>
     <input type="text" name="nome_pet" required />
-    <!-- ... Resto de los campos del formulario (sin cambios) ... -->
     <label for="especie_pet">Espécie:</label><input type="text" name="especie_pet" required />
     <label for="raca_pet">Raça:</label><input type="text" name="raca_pet" />
     <label for="sexo_pet">Sexo:</label><select name="sexo_pet"><option value="Macho">Macho</option><option value="Fêmea">Fêmea</option></select>
@@ -73,7 +72,7 @@
   <script>
     const form = document.getElementById('petpassVetForm');
     const statusMessage = document.getElementById('statusMessage');
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxouuyWPbqt-grNkVfd921HldC20mzNxIt8Tb3OgO77Hwg1DIm9nQWaa7-Z2NCvco7QcQ/exec"; // Asegúrate que esta URL es la correcta
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOaTxOCYlrZ0gw-37zK6WwF21AIeTuZZ69ufi2C5Io4ht-lTrXQf7yc5CHZt1T4QKpYg/exec"; // Asegúrate que esta URL es la última
 
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -99,38 +98,43 @@
         const payload = Object.fromEntries(formData.entries());
         payload.action = "registerVet";
 
-        // ========= INICIO DE LA CORRECCIÓN CRÍTICA =========
+        // ========= INICIO DE LA CORRECCIÓN DEFINITIVA =========
         fetch(SCRIPT_URL, {
           method: 'POST',
-          // mode: 'no-cors', // <-- ESTA LÍNEA ES ELIMINADA. ES LA CAUSA DEL ERROR.
-          cache: 'no-cache',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          // ELIMINAMOS CABECERAS Y MODO. DEJAMOS QUE EL NAVEGADOR MANEJE CORS.
+          // ENVIAMOS EL BODY COMO TEXTO PLANO.
           body: JSON.stringify(payload),
         })
-        .then(res => res.json()) // Ahora procesamos la respuesta del servidor
+        .then(res => {
+          // Primero, verificamos si la respuesta es OK.
+          if (!res.ok) {
+            // Si hay un error de red o de servidor (500, etc.), lanzamos un error.
+            throw new Error(`Erro de rede: ${res.statusText}`);
+          }
+          return res.json(); // Si está ok, intentamos parsear como JSON.
+        })
         .then(data => {
           if (data.result === 'success') {
             statusMessage.textContent = `Plaquinha ${data.id} ativada com sucesso!`;
             statusMessage.className = 'status-message status-success';
             form.reset();
           } else {
-            // Mostramos el error que viene del backend
-            throw new Error(data.message || 'Ocorreu um erro desconhecido.');
+            // Si el JSON tiene un mensaje de error del script, lo mostramos.
+            throw new Error(data.message || 'Ocorreu um erro no servidor.');
           }
         })
         .catch(error => {
+          // Capturamos cualquier error, ya sea de red o del script.
           statusMessage.textContent = `Erro: ${error.message}`;
           statusMessage.className = 'status-message status-error';
+          console.error("Detalhes do erro:", error);
         })
         .finally(() => {
-          // Reactivamos el botón después de 4 segundos
           setTimeout(() => {
             submitButton.disabled = false;
           }, 4000);
         });
-        // ========= FIN DE LA CORRECCIÓN CRÍTICA =========
+        // ========= FIN DE LA CORRECCIÓN DEFINITIVA =========
       };
       reader.onerror = () => {
           statusMessage.textContent = 'Erro ao processar a imagem.';
@@ -141,4 +145,3 @@
   </script>
 </body>
 </html>
-
