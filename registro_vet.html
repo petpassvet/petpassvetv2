@@ -31,6 +31,10 @@
   <form id="petpassVetForm">
     <h1>Registro Pet Pass Vet</h1>
 
+<!-- ESTE BLOQUE ES NUEVO Y CRÍTICO -->
+<label for="id_pet">Número de Série (ex: PPV-12345):</label>
+<input type="text" id="id_pet" name="id_pet" required pattern="PPV-\d{5}" title="O formato deve ser PPV- seguido por 5 números (ex: PPV-12345)"/>
+
     <h2>🐾 Dados do Pet</h2>
     <label for="foto_pet">📸 Foto do Pet (Recomendado: imagem quadrada)</label>
     <input type="file" id="foto_pet" name="foto_pet" accept="image/*" required />
@@ -102,7 +106,7 @@
     const statusMessage = document.getElementById('statusMessage');
     
     // ¡¡¡CRÍTICO!!! Pega aquí la URL de implementación de tu nuevo script de PET PASS VET
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwWiAOQnr6pJ94CErW51UcNJrMcCTzZlKQyu6dCrqMIiluZllksPucy7J46aHC502BJQA/exec"; 
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyJSau_JIjLCM1m7VXGOQcJpWmAnwUG2P2l-kBKcwjOE9ro0xFitr7u_mJTf9-AiiAqDA/exec"; 
 
     petpassVetForm.addEventListener('submit', function(e) {
       e.preventDefault();
